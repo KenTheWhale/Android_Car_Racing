@@ -2,6 +2,7 @@
     <string name="app_name">CarRacing</string>
     <string name="tendangnhap">Tên đăng nhập</string>
     <string name="nhapmatkhau">Mật khẩu</string>
+    <string name="nhaplaimatkhau">Nhập lại mật khẩu</string>
     <string name="ngaysinh">Ngày sinh</string>
     <string name="cancuoccongdan">Căn cước công dân</string>
     <string name="xacnhan">Xác nhận</string>

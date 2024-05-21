@@ -52,6 +52,19 @@
             android:textColorHint="@color/Gray" />
 
         <EditText
+            android:id="@+id/passwordInputAgain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/nhaplaimatkhau"
+            android:padding="10dp"
+            android:minHeight="48dp"
+            android:password="true"
+            android:textColorHint="@color/Gray" />
+
+        <EditText
             android:id="@+id/birthdayInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
