@@ -6,7 +6,8 @@
     android:background="@drawable/login"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    android:padding="10dp">
 
     <ImageView
         android:layout_marginTop="40dp"
