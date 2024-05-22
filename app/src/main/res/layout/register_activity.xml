@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dangky"
+        android:layout_above="@+id/KhungDangKy"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:textSize="30dp" />
+    <LinearLayout
+        android:id="@+id/KhungDangKy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/usernameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/tendangnhap"
+            android:padding="10dp"
+            android:minHeight="48dp"
+            android:textColorHint="@color/Gray" />
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/nhapmatkhau"
+            android:padding="10dp"
+            android:minHeight="48dp"
+            android:password="true"
+            android:textColorHint="@color/Gray" />
+
+        <EditText
+            android:id="@+id/passwordInputAgain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/nhaplaimatkhau"
+            android:padding="10dp"
+            android:minHeight="48dp"
+            android:password="true"
+            android:textColorHint="@color/Gray" />
+
+        <EditText
+            android:id="@+id/birthdayInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/ngaysinh"
+            android:padding="10dp"
+            android:minHeight="48dp"
+            android:textColorHint="@color/Gray" />
+
+        <EditText
+            android:id="@+id/idCardInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:hint="@string/cancuoccongdan"
+            android:padding="10dp"
+            android:minHeight="48dp"
+            android:textColorHint="@color/Gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/xacnhan"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/thoat"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_margin="10dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
