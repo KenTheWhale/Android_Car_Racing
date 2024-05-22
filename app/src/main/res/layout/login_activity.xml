@@ -18,7 +18,7 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/logo"
         android:elevation="50dp"
-        android:layout_weight="4"/>
+        android:layout_weight="3"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,70 +32,76 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="0.5"
+        android:layout_weight="1.2"
         android:weightSum="10"
         android:gravity="center_horizontal"
         android:layout_marginTop="10dp">
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:text="Username"
             android:textColor="#D7FFFFFF"
             android:textStyle="bold"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:textSize="20sp"
-            android:gravity="center"/>
+            android:gravity="center" />
        <EditText
            android:id="@+id/usernameInput"
-           android:layout_weight="6"
+           android:layout_weight="7"
            android:layout_width="0dp"
            android:layout_height="match_parent"
            android:hint="Enter your username"
            android:textColor="@color/white"
-           android:textColorHint="#808080"
+           android:textColorHint="@color/Gray"
            android:imeOptions="actionDone"
            android:inputType="text"
            android:typeface="monospace"
            android:maxLength="50"
            android:maxLines="1"
            android:gravity="center_vertical|left"
-           android:textSize="15sp"/>
+           android:textSize="15sp"
+           android:layout_marginStart="5dp"
+           android:layout_marginEnd="0dp"
+           android:layout_margin="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="0.5"
+        android:layout_weight="1.2"
         android:weightSum="10"
         android:gravity="center_horizontal"
         android:layout_marginTop="10dp">
         <TextView
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Password"
             android:textColor="#D7FFFFFF"
             android:textStyle="bold"
-            android:layout_margin="5dp"
-            android:textSize="20sp" />
+            android:layout_margin="10dp"
+            android:textSize="20sp"/>
         <EditText
             android:id="@+id/passwordInput"
-            android:layout_weight="6"
+            android:layout_weight="7"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:hint="Enter your password"
             android:textColor="@color/white"
-            android:textColorHint="#808080"
+            android:textColorHint="@color/Gray"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:maxLength="50"
             android:maxLines="1"
             android:gravity="center_vertical|left"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="0dp"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
     <Button
@@ -105,7 +111,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:backgroundTint="#05354A"
-        android:text="Sign In"
+        android:text="Log In"
         android:textColor="#FFF"
         android:textSize="20sp"/>
     <Button
