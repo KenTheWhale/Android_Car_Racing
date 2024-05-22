@@ -1,10 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Race track -->
+    <TextView
+        android:id="@+id/titleTv"
+        android:text="Car Racing Game"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/raceTrack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/road"
+        android:layout_below="@id/titleTv">
+        <SeekBar
+            android:id="@+id/seekBarCar1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:thumb="@drawable/car_1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <SeekBar
+            android:id="@+id/seekBarCar2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:thumb="@drawable/car_2"
+            app:layout_constraintTop_toBottomOf="@id/seekBarCar1"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <SeekBar
+            android:id="@+id/seekBarCar3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:thumb="@drawable/car_3"
+            app:layout_constraintTop_toBottomOf="@id/seekBarCar2"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <SeekBar
+            android:id="@+id/seekBarCar4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:thumb="@drawable/car_4"
+            app:layout_constraintTop_toBottomOf="@id/seekBarCar3"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/userInfo"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/raceTrack">
+        <TextView
+            android:id="@+id/usernameView"
+            android:text="Username: "
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/userName"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/usernameView"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/moneyView"
+            android:text="Money: "
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/usernameView"/>
+        <TextView
+            android:id="@+id/money"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/moneyView"
+            app:layout_constraintTop_toBottomOf="@id/userName"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Betting -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bettingService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/userInfo">
+        <TextView
+            android:id="@+id/car1View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Car 1:"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@id/car1Text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/car1Text"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/car1View"/>
+        <TextView
+            android:id="@+id/car2View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Car 2:"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@id/car2Text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/car1View" />
+        <EditText
+            android:id="@+id/car2Text"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/car1Text"
+            app:layout_constraintStart_toEndOf="@id/car2View"/>
+        <TextView
+            android:id="@+id/car3View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Car 3:"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@id/car3Text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/car2View" />
+        <EditText
+            android:id="@+id/car3Text"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/car2Text"
+            app:layout_constraintStart_toEndOf="@id/car3View"/>
+        <TextView
+            android:id="@+id/car4View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Car 4:"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@id/car4Text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/car3View" />
+        <EditText
+            android:id="@+id/car4Text"
+            android:textSize="20sp"
+            android:inputType="number"
+            android:layout_marginTop="15dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/car3Text"
+            app:layout_constraintStart_toEndOf="@id/car4View"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/bettingService">
+        <Button
+            android:id="@+id/startRaceButton"
+            android:text="Start"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/resetRaceButton"
+            />
+        <Button
+            android:id="@+id/resetRaceButton"
+            android:text="Reset"
+            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/startRaceButton"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
