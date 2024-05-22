@@ -1,0 +1,28 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.CarRacing\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".LoginActivity\"/>\r\n        <activity android:name=\".BuyCoinActivity\"/>\r\n        <activity android:name=\".ResultActivity\"/>\r\n        <activity android:name=\".SettingActivity\"/>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 7bc8d1825537db6fe23da783edcdc9fd7d49f220)
++++ b/app/src/main/AndroidManifest.xml	(date 1716123633877)
+@@ -13,7 +13,7 @@
+         android:theme="@style/Theme.CarRacing"
+         tools:targetApi="31">
+         <activity
+-            android:name=".MainActivity"
++            android:name=".LoginActivity"
+             android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+@@ -21,7 +21,7 @@
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+-        <activity android:name=".LoginActivity"/>
++        <activity android:name=".MainActivity"/>
+         <activity android:name=".BuyCoinActivity"/>
+         <activity android:name=".ResultActivity"/>
+         <activity android:name=".SettingActivity"/>
