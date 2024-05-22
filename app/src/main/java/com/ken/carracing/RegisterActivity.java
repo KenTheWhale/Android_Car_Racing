@@ -1,5 +1,6 @@
 package com.ken.carracing;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,26 +17,27 @@ import java.util.HashMap;
 public class RegisterActivity extends Activity {
     private EditText usernameInput;
     private EditText passwordInput;
-    private EditText birthdayInput;
-    private EditText idCardInput;
-    private Button btnSignUp;
+    private EditText confirmedPasswordInput;
+    private Button btnCreate;
     private Button btnCancel;
 
-    private final HashMap<String, String> accounts = new HashMap<>();
+    private HashMap<String, String> accounts = new HashMap<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
 
-        usernameInput = findViewById(R.id.usernameInput);
-        passwordInput = findViewById(R.id.passwordInput);
-        birthdayInput = findViewById(R.id.birthdayInput);
-        idCardInput = findViewById(R.id.idCardInput);
-        btnSignUp = findViewById(R.id.btnSignUp);
-        btnCancel = findViewById(R.id.btnCancel);
+        usernameInput = findViewById(R.id.inp_username);
+        passwordInput = findViewById(R.id.inp_password);
+        confirmedPasswordInput = findViewById(R.id.inp_repassword);
+        btnCreate = findViewById(R.id.btn_create);
+        btnCancel = findViewById(R.id.btn_cancel);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        accounts = (HashMap<String, String>) getIntent().getSerializableExtra("accounts");
+
+        btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 register();
@@ -45,7 +47,7 @@ public class RegisterActivity extends Activity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                changeLoginPage();
             }
         });
     }
@@ -53,8 +55,7 @@ public class RegisterActivity extends Activity {
     private void register() {
         String username = usernameInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
-        String birthday = birthdayInput.getText().toString().trim();
-        String idCard = idCardInput.getText().toString().trim();
+        String confirmedPassword = confirmedPasswordInput.getText().toString().trim();
 
         if (TextUtils.isEmpty(username)) {
             usernameInput.setError("Username is required");
@@ -68,15 +69,15 @@ public class RegisterActivity extends Activity {
             return;
         }
 
-        if (TextUtils.isEmpty(birthday)) {
-            birthdayInput.setError("Birthday is required");
-            birthdayInput.requestFocus();
+        if (TextUtils.isEmpty(confirmedPassword)) {
+            passwordInput.setError("Re-password is required");
+            passwordInput.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(idCard)) {
-            idCardInput.setError("ID Card is required");
-            idCardInput.requestFocus();
+        if(!password.equals(confirmedPassword)){
+            confirmedPasswordInput.setError("Re-password does not match password");
+            confirmedPasswordInput.requestFocus();
             return;
         }
 
@@ -88,7 +89,14 @@ public class RegisterActivity extends Activity {
 
         accounts.put(username, password);
 
-        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Register successfully", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("accounts", accounts);
+        startActivity(intent);
+        finish();
+    }
+
+    private void changeLoginPage(){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();

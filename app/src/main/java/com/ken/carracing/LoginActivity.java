@@ -17,8 +17,9 @@ public class LoginActivity extends Activity {
     private EditText usernameInput;
     private EditText passwordInput;
     private Button btnSignIn;
+    private Button btnSignUp;
 
-    private final HashMap<String, String> accounts = new HashMap<>();
+    private  HashMap<String, String> accounts = new HashMap<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,14 +30,26 @@ public class LoginActivity extends Activity {
         accounts.put("user2", "abc");
         accounts.put("user3", "test");
 
-        usernameInput = (EditText) findViewById(R.id.usernameInput);
-        passwordInput =(EditText) findViewById(R.id.passwordInput);
-        btnSignIn =(Button) findViewById(R.id.btnSignIn);
+        usernameInput = findViewById(R.id.usernameInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignUp = findViewById(R.id.btnSignUp);
+
+        if((getIntent().getSerializableExtra("accounts")) != null){
+            accounts = (HashMap<String, String>) (getIntent().getSerializableExtra("accounts"));
+        }
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Login();
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeSignUpPage();
             }
         });
     }
@@ -71,4 +84,10 @@ public class LoginActivity extends Activity {
         return accounts.containsKey(username) && accounts.get(username).equals(password);
     }
 
+    private void changeSignUpPage(){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("accounts", accounts);
+        startActivity(intent);
+        finish();
+    }
 }
