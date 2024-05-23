@@ -50,5 +50,6 @@
         android:text="Back"
         android:textSize="20sp"
         android:gravity="center"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:layout_marginEnd="10dp"/>
 </LinearLayout>
