@@ -21,12 +21,16 @@ public class SettingActivity extends Activity {
     private AudioManager audioManager;
     private TextView txtVolume;
     private Switch sMute;
+    private String username = "";
+    private int currentCoin = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_activity);
 
+        currentCoin = (int) getIntent().getSerializableExtra("coin");
+        username = (String) getIntent().getSerializableExtra("username");
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
@@ -46,6 +50,8 @@ public class SettingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SettingActivity.this, MainActivity.class);
+                intent.putExtra("coin", currentCoin);
+                intent.putExtra("username", username);
                 startActivity(intent);
                 finish();
             }
