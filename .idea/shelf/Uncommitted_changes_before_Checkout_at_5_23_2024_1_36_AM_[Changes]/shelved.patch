@@ -1,0 +1,97 @@
+Index: app/src/main/java/com/ken/carracing/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ken.carracing;\r\n\r\nimport android.animation.ValueAnimator;\r\nimport android.os.Bundle;\r\nimport android.os.Handler;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.SeekBar;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.core.graphics.Insets;\r\nimport androidx.core.view.ViewCompat;\r\nimport androidx.core.view.WindowInsetsCompat;\r\n\r\nimport java.util.Random;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    private SeekBar seekBarCar1, seekBarCar2, seekBarCar3, seekBarCar4;\r\n    private int car1Money, car2Money, car3Money, car4Money, userMoney, totalBet;\r\n    private Button startRaceButton, resetRaceButton;\r\n    private EditText car1Bet, car2Bet, car3Bet, car4Bet;\r\n    private TextView moneyView;\r\n    private Handler handler = new Handler();\r\n    private Random random = new Random();\r\n    private boolean raceRunning = false;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.main_activity);\r\n        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {\r\n            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());\r\n            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);\r\n            return insets;\r\n        });\r\n        //find views\r\n        seekBarCar1 = findViewById(R.id.seekBarCar1);\r\n        seekBarCar2 = findViewById(R.id.seekBarCar2);\r\n        seekBarCar3 = findViewById(R.id.seekBarCar3);\r\n        seekBarCar4 = findViewById(R.id.seekBarCar4);\r\n        car1Bet = findViewById(R.id.car1Text);\r\n        car2Bet = findViewById(R.id.car2Text);\r\n        car3Bet = findViewById(R.id.car3Text);\r\n        car4Bet = findViewById(R.id.car4Text);\r\n        moneyView = findViewById(R.id.money);\r\n        startRaceButton = findViewById(R.id.startRaceButton);\r\n        resetRaceButton = findViewById(R.id.resetRaceButton);\r\n        //seekbar setting\r\n        seekBarCar1.setEnabled(false);\r\n        seekBarCar2.setEnabled(false);\r\n        seekBarCar3.setEnabled(false);\r\n        seekBarCar4.setEnabled(false);\r\n        //update user money\r\n        userMoney = 10000;\r\n        updateUserMoneyDisplay();\r\n        //start race\r\n        startRaceButton.setOnClickListener(v -> {\r\n            checkBetMoney();\r\n            totalBet = car1Money + car2Money + car3Money + car4Money;\r\n            if(totalBet <= userMoney){\r\n                if (!raceRunning) {\r\n                    raceRunning = true;\r\n                    startRace(result -> {\r\n                        handleRaceResult(result);\r\n                        raceRunning = false;\r\n                    });\r\n                }\r\n            }\r\n        });\r\n        //reset cars\r\n        resetRaceButton.setOnClickListener(v -> {\r\n            seekBarCar1.setProgress(0);\r\n            seekBarCar2.setProgress(0);\r\n            seekBarCar3.setProgress(0);\r\n            seekBarCar4.setProgress(0);\r\n        });\r\n    }\r\n    private void checkBetMoney(){\r\n        try {\r\n            car1Money = Integer.parseInt(car1Bet.getText().toString());\r\n        }catch (NumberFormatException exception){\r\n            car1Money = 0;\r\n        }\r\n        try {\r\n            car2Money = Integer.parseInt(car2Bet.getText().toString());\r\n        }catch (NumberFormatException exception){\r\n            car2Money = 0;\r\n        }\r\n        try {\r\n            car3Money = Integer.parseInt(car3Bet.getText().toString());\r\n        }catch (NumberFormatException exception){\r\n            car3Money = 0;\r\n        }\r\n        try {\r\n            car4Money = Integer.parseInt(car4Bet.getText().toString());\r\n        }catch (NumberFormatException exception){\r\n            car4Money = 0;\r\n        }\r\n    }\r\n    private void updateUserMoneyDisplay() {\r\n        moneyView.setText(\"\" + userMoney);\r\n    }\r\n    private void handleRaceResult(String result) {\r\n        if (result.contains(\"car 1\")) {\r\n            userMoney += car1Money - car2Money - car3Money - car4Money;\r\n        } else if (result.contains(\"car 2\")) {\r\n            userMoney += car2Money - car1Money - car3Money - car4Money;\r\n        } else if (result.contains(\"car 3\")) {\r\n            userMoney += car3Money - car1Money - car2Money - car4Money;\r\n        } else if (result.contains(\"car 4\")) {\r\n            userMoney += car4Money - car1Money - car2Money - car3Money;\r\n        }\r\n        updateUserMoneyDisplay();\r\n    }\r\n    public interface RaceResultCallback {\r\n        void onRaceResult(String result);\r\n    }\r\n    private void startRace(RaceResultCallback raceResultCallback) {\r\n        seekBarCar1.setProgress(0);\r\n        seekBarCar2.setProgress(0);\r\n        seekBarCar3.setProgress(0);\r\n        seekBarCar4.setProgress(0);\r\n\r\n        handler.postDelayed(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n                if (seekBarCar1.getProgress() >= seekBarCar1.getMax() ||\r\n                        seekBarCar2.getProgress() >= seekBarCar2.getMax() ||\r\n                        seekBarCar3.getProgress() >= seekBarCar3.getMax() ||\r\n                        seekBarCar4.getProgress() >= seekBarCar4.getMax()) {\r\n                    String raceResult;\r\n                    if (seekBarCar1.getProgress() >= seekBarCar1.getMax() &&\r\n                            seekBarCar2.getProgress() >= seekBarCar2.getMax() &&\r\n                            seekBarCar3.getProgress() >= seekBarCar3.getMax() &&\r\n                            seekBarCar4.getProgress() >= seekBarCar4.getMax()) {\r\n                        raceResult = \"tie\";\r\n                    } else if (seekBarCar1.getProgress() >= seekBarCar1.getMax()) {\r\n                        raceResult = \"car 1\";\r\n                    } else if (seekBarCar2.getProgress() >= seekBarCar2.getMax()) {\r\n                        raceResult = \"car 2\";\r\n                    } else if (seekBarCar3.getProgress() >= seekBarCar3.getMax()) {\r\n                        raceResult = \"car 3\";\r\n                    } else {\r\n                        raceResult = \"car 4\";\r\n                    }\r\n                    raceResultCallback.onRaceResult(raceResult);\r\n                } else {\r\n                    int progressCar1 = random.nextInt(5) + 1;\r\n                    int progressCar2 = random.nextInt(5) + 1;\r\n                    int progressCar3 = random.nextInt(5) + 1;\r\n                    int progressCar4 = random.nextInt(5) + 1;\r\n                    animateSeekBar(seekBarCar1, seekBarCar1.getProgress(), seekBarCar1.getProgress() + progressCar1);\r\n                    animateSeekBar(seekBarCar2, seekBarCar2.getProgress(), seekBarCar2.getProgress() + progressCar2);\r\n                    animateSeekBar(seekBarCar3, seekBarCar3.getProgress(), seekBarCar3.getProgress() + progressCar3);\r\n                    animateSeekBar(seekBarCar4, seekBarCar4.getProgress(), seekBarCar4.getProgress() + progressCar4);\r\n                    handler.postDelayed(this, 100);\r\n                }\r\n            }\r\n        }, 100);\r\n    }\r\n    private void animateSeekBar(SeekBar seekBar, int start, int end) {\r\n        ValueAnimator animator = ValueAnimator.ofInt(start, end);\r\n        animator.setDuration(100);\r\n        animator.addUpdateListener(animation -> seekBar.setProgress((int) animation.getAnimatedValue()));\r\n        animator.start();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ken/carracing/MainActivity.java b/app/src/main/java/com/ken/carracing/MainActivity.java
+--- a/app/src/main/java/com/ken/carracing/MainActivity.java	(revision c4bbeeb97b3e4d1983f472b652baaf13b638ede9)
++++ b/app/src/main/java/com/ken/carracing/MainActivity.java	(date 1716402941056)
+@@ -38,46 +38,46 @@
+             return insets;
+         });
+         //find views
+-        seekBarCar1 = findViewById(R.id.seekBarCar1);
+-        seekBarCar2 = findViewById(R.id.seekBarCar2);
+-        seekBarCar3 = findViewById(R.id.seekBarCar3);
+-        seekBarCar4 = findViewById(R.id.seekBarCar4);
+-        car1Bet = findViewById(R.id.car1Text);
+-        car2Bet = findViewById(R.id.car2Text);
+-        car3Bet = findViewById(R.id.car3Text);
+-        car4Bet = findViewById(R.id.car4Text);
+-        moneyView = findViewById(R.id.money);
+-        startRaceButton = findViewById(R.id.startRaceButton);
+-        resetRaceButton = findViewById(R.id.resetRaceButton);
+-        //seekbar setting
+-        seekBarCar1.setEnabled(false);
+-        seekBarCar2.setEnabled(false);
+-        seekBarCar3.setEnabled(false);
+-        seekBarCar4.setEnabled(false);
+-        //update user money
+-        userMoney = 10000;
+-        updateUserMoneyDisplay();
+-        //start race
+-        startRaceButton.setOnClickListener(v -> {
+-            checkBetMoney();
+-            totalBet = car1Money + car2Money + car3Money + car4Money;
+-            if(totalBet <= userMoney){
+-                if (!raceRunning) {
+-                    raceRunning = true;
+-                    startRace(result -> {
+-                        handleRaceResult(result);
+-                        raceRunning = false;
+-                    });
+-                }
+-            }
+-        });
+-        //reset cars
+-        resetRaceButton.setOnClickListener(v -> {
+-            seekBarCar1.setProgress(0);
+-            seekBarCar2.setProgress(0);
+-            seekBarCar3.setProgress(0);
+-            seekBarCar4.setProgress(0);
+-        });
++//        seekBarCar1 = findViewById(R.id.seekBarCar1);
++//        seekBarCar2 = findViewById(R.id.seekBarCar2);
++//        seekBarCar3 = findViewById(R.id.seekBarCar3);
++//        seekBarCar4 = findViewById(R.id.seekBarCar4);
++//        car1Bet = findViewById(R.id.car1Text);
++//        car2Bet = findViewById(R.id.car2Text);
++//        car3Bet = findViewById(R.id.car3Text);
++//        car4Bet = findViewById(R.id.car4Text);
++//        moneyView = findViewById(R.id.money);
++//        startRaceButton = findViewById(R.id.startRaceButton);
++//        resetRaceButton = findViewById(R.id.resetRaceButton);
++//        //seekbar setting
++//        seekBarCar1.setEnabled(false);
++//        seekBarCar2.setEnabled(false);
++//        seekBarCar3.setEnabled(false);
++//        seekBarCar4.setEnabled(false);
++//        //update user money
++//        userMoney = 10000;
++//        updateUserMoneyDisplay();
++//        //start race
++//        startRaceButton.setOnClickListener(v -> {
++//            checkBetMoney();
++//            totalBet = car1Money + car2Money + car3Money + car4Money;
++//            if(totalBet <= userMoney){
++//                if (!raceRunning) {
++//                    raceRunning = true;
++//                    startRace(result -> {
++//                        handleRaceResult(result);
++//                        raceRunning = false;
++//                    });
++//                }
++//            }
++//        });
++//        //reset cars
++//        resetRaceButton.setOnClickListener(v -> {
++//            seekBarCar1.setProgress(0);
++//            seekBarCar2.setProgress(0);
++//            seekBarCar3.setProgress(0);
++//            seekBarCar4.setProgress(0);
++//        });
+     }
+     private void checkBetMoney(){
+         try {
