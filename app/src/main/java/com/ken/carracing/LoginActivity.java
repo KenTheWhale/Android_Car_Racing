@@ -73,6 +73,7 @@ public class LoginActivity extends Activity {
         if (checkAccount(username, password)) {
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
             finish();
         } else {

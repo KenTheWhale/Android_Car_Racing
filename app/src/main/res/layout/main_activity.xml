@@ -106,8 +106,8 @@
             android:layout_height="0dp"
             android:layout_weight="5"/>
         <TextView
-            android:id="@+id/tv_money"
-            android:text="Money:"
+            android:id="@+id/tv_coin"
+            android:text="Coin:"
             android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="0dp"

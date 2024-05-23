@@ -1,0 +1,211 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.CarRacing\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"true\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity android:name=\".LoginActivity\"/>\r\n        <activity android:name=\".BuyCoinActivity\"/>\r\n        <activity android:name=\".ResultActivity\"/>\r\n        <activity android:name=\".SettingActivity\"/>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 915915bebf1ab04e0b734f914f1df3182f00455d)
++++ b/app/src/main/AndroidManifest.xml	(date 1716403078888)
+@@ -13,7 +13,7 @@
+         android:theme="@style/Theme.CarRacing"
+         tools:targetApi="31">
+         <activity
+-            android:name=".MainActivity"
++            android:name=".LoginActivity"
+             android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+@@ -21,7 +21,7 @@
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
+-        <activity android:name=".LoginActivity"/>
++        <activity android:name=".MainActivity"/>
+         <activity android:name=".BuyCoinActivity"/>
+         <activity android:name=".ResultActivity"/>
+         <activity android:name=".SettingActivity"/>
+Index: app/src/main/java/com/ken/carracing/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ken.carracing;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.activity.EdgeToEdge;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        EdgeToEdge.enable(this);\r\n        setContentView(R.layout.main_activity);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ken/carracing/MainActivity.java b/app/src/main/java/com/ken/carracing/MainActivity.java
+--- a/app/src/main/java/com/ken/carracing/MainActivity.java	(revision 915915bebf1ab04e0b734f914f1df3182f00455d)
++++ b/app/src/main/java/com/ken/carracing/MainActivity.java	(date 1716403030438)
+@@ -1,16 +1,171 @@
+ package com.ken.carracing;
+ 
++import android.animation.ValueAnimator;
+ import android.os.Bundle;
++import android.os.Handler;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.SeekBar;
++import android.widget.TextView;
+ 
+ import androidx.activity.EdgeToEdge;
+ import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.graphics.Insets;
++import androidx.core.view.ViewCompat;
++import androidx.core.view.WindowInsetsCompat;
++
++import java.util.Random;
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
++    private SeekBar seekBarCar1, seekBarCar2, seekBarCar3, seekBarCar4;
++    private int car1Money, car2Money, car3Money, car4Money, userMoney, totalBet;
++    private Button startRaceButton, resetRaceButton;
++    private EditText car1Bet, car2Bet, car3Bet, car4Bet;
++    private TextView moneyView;
++    private Handler handler = new Handler();
++    private Random random = new Random();
++    private boolean raceRunning = false;
++
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         EdgeToEdge.enable(this);
+         setContentView(R.layout.main_activity);
++        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
++            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
++            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
++            return insets;
++        });
++        //find views
++//        seekBarCar1 = findViewById(R.id.seekBarCar1);
++//        seekBarCar2 = findViewById(R.id.seekBarCar2);
++//        seekBarCar3 = findViewById(R.id.seekBarCar3);
++//        seekBarCar4 = findViewById(R.id.seekBarCar4);
++//        car1Bet = findViewById(R.id.car1Text);
++//        car2Bet = findViewById(R.id.car2Text);
++//        car3Bet = findViewById(R.id.car3Text);
++//        car4Bet = findViewById(R.id.car4Text);
++//        moneyView = findViewById(R.id.money);
++//        startRaceButton = findViewById(R.id.startRaceButton);
++//        resetRaceButton = findViewById(R.id.resetRaceButton);
++//        //seekbar setting
++//        seekBarCar1.setEnabled(false);
++//        seekBarCar2.setEnabled(false);
++//        seekBarCar3.setEnabled(false);
++//        seekBarCar4.setEnabled(false);
++//        //update user money
++//        userMoney = 10000;
++//        updateUserMoneyDisplay();
++//        //start race
++//        startRaceButton.setOnClickListener(v -> {
++//            checkBetMoney();
++//            totalBet = car1Money + car2Money + car3Money + car4Money;
++//            if(totalBet <= userMoney){
++//                if (!raceRunning) {
++//                    raceRunning = true;
++//                    startRace(result -> {
++//                        handleRaceResult(result);
++//                        raceRunning = false;
++//                    });
++//                }
++//            }
++//        });
++//        //reset cars
++//        resetRaceButton.setOnClickListener(v -> {
++//            seekBarCar1.setProgress(0);
++//            seekBarCar2.setProgress(0);
++//            seekBarCar3.setProgress(0);
++//            seekBarCar4.setProgress(0);
++//        });
++    }
++    private void checkBetMoney(){
++        try {
++            car1Money = Integer.parseInt(car1Bet.getText().toString());
++        }catch (NumberFormatException exception){
++            car1Money = 0;
++        }
++        try {
++            car2Money = Integer.parseInt(car2Bet.getText().toString());
++        }catch (NumberFormatException exception){
++            car2Money = 0;
++        }
++        try {
++            car3Money = Integer.parseInt(car3Bet.getText().toString());
++        }catch (NumberFormatException exception){
++            car3Money = 0;
++        }
++        try {
++            car4Money = Integer.parseInt(car4Bet.getText().toString());
++        }catch (NumberFormatException exception){
++            car4Money = 0;
++        }
++    }
++    private void updateUserMoneyDisplay() {
++        moneyView.setText("" + userMoney);
++    }
++    private void handleRaceResult(String result) {
++        if (result.contains("car 1")) {
++            userMoney += car1Money - car2Money - car3Money - car4Money;
++        } else if (result.contains("car 2")) {
++            userMoney += car2Money - car1Money - car3Money - car4Money;
++        } else if (result.contains("car 3")) {
++            userMoney += car3Money - car1Money - car2Money - car4Money;
++        } else if (result.contains("car 4")) {
++            userMoney += car4Money - car1Money - car2Money - car3Money;
++        }
++        updateUserMoneyDisplay();
++    }
++    public interface RaceResultCallback {
++        void onRaceResult(String result);
++    }
++    private void startRace(RaceResultCallback raceResultCallback) {
++        seekBarCar1.setProgress(0);
++        seekBarCar2.setProgress(0);
++        seekBarCar3.setProgress(0);
++        seekBarCar4.setProgress(0);
++
++        handler.postDelayed(new Runnable() {
++            @Override
++            public void run() {
++                if (seekBarCar1.getProgress() >= seekBarCar1.getMax() ||
++                        seekBarCar2.getProgress() >= seekBarCar2.getMax() ||
++                        seekBarCar3.getProgress() >= seekBarCar3.getMax() ||
++                        seekBarCar4.getProgress() >= seekBarCar4.getMax()) {
++                    String raceResult;
++                    if (seekBarCar1.getProgress() >= seekBarCar1.getMax() &&
++                            seekBarCar2.getProgress() >= seekBarCar2.getMax() &&
++                            seekBarCar3.getProgress() >= seekBarCar3.getMax() &&
++                            seekBarCar4.getProgress() >= seekBarCar4.getMax()) {
++                        raceResult = "tie";
++                    } else if (seekBarCar1.getProgress() >= seekBarCar1.getMax()) {
++                        raceResult = "car 1";
++                    } else if (seekBarCar2.getProgress() >= seekBarCar2.getMax()) {
++                        raceResult = "car 2";
++                    } else if (seekBarCar3.getProgress() >= seekBarCar3.getMax()) {
++                        raceResult = "car 3";
++                    } else {
++                        raceResult = "car 4";
++                    }
++                    raceResultCallback.onRaceResult(raceResult);
++                } else {
++                    int progressCar1 = random.nextInt(5) + 1;
++                    int progressCar2 = random.nextInt(5) + 1;
++                    int progressCar3 = random.nextInt(5) + 1;
++                    int progressCar4 = random.nextInt(5) + 1;
++                    animateSeekBar(seekBarCar1, seekBarCar1.getProgress(), seekBarCar1.getProgress() + progressCar1);
++                    animateSeekBar(seekBarCar2, seekBarCar2.getProgress(), seekBarCar2.getProgress() + progressCar2);
++                    animateSeekBar(seekBarCar3, seekBarCar3.getProgress(), seekBarCar3.getProgress() + progressCar3);
++                    animateSeekBar(seekBarCar4, seekBarCar4.getProgress(), seekBarCar4.getProgress() + progressCar4);
++                    handler.postDelayed(this, 100);
++                }
++            }
++        }, 100);
++    }
++    private void animateSeekBar(SeekBar seekBar, int start, int end) {
++        ValueAnimator animator = ValueAnimator.ofInt(start, end);
++        animator.setDuration(100);
++        animator.addUpdateListener(animation -> seekBar.setProgress((int) animation.getAnimatedValue()));
++        animator.start();
+     }
+ }
+\ No newline at end of file
