@@ -4,11 +4,18 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -36,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer> carRankCoin = new ArrayList<>();
     private String username = "";
 
+    private ImageView imgHelp, imgSetting;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
+
+            imgHelp = (ImageView) findViewById(R.id.img_Help);
+            imgSetting = (ImageView) findViewById(R.id.img_Setting);
 
 
             sbCar1 = findViewById(R.id.sb_car_1);
@@ -130,9 +142,59 @@ public class MainActivity extends AppCompatActivity {
                     etCar4.setText("");
                 }
             });
+            imgHelp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showHelpDialog();
+                }
+            });
+            imgSetting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                    intent.putExtra("coin", currentCoin);
+                    intent.putExtra("username", username);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
+    }
+    private void showHelpDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Hướng dẫn cách chơi");
+
+        SpannableString message = new SpannableString(
+                "Welcome to our racing track\n" +
+                        "Please place your bets in the corresponding boxes below for the race car you trust\n" +
+                        "The reward corresponds to the following amount\n" +
+                        "The car reaching top 1 receives 200% of the bet amount\n" +
+                        "The car reaching top 2 receives 150% of the bet amount\n" +
+                        "The cars that reach the top 3 will be loss 150% of the bet amount\n" +
+                        "The cars that reach the top 4 will be loss 200% of the bet amount\n" +
+                        "Hope you have fun participating"
+        );
+
+        String[] lines = message.toString().split("\n");
+        int start = 0;
+        for (String line : lines) {
+            if (line.startsWith("Welcome to our racing track") || line.startsWith("Hope you have fun participating")) {
+                message.setSpan(new StyleSpan(Typeface.BOLD), start, start + line.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            } else if (line.startsWith("The car")) {
+                message.setSpan(new ForegroundColorSpan(Color.RED), start, start + line.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            start += line.length() + 1;
         }
 
-
+        builder.setMessage(message);
+        builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void updateUserMoneyDisplay() {
@@ -253,4 +315,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }
