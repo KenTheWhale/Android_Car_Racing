@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,89 +8,113 @@
     android:paddingTop="16dp"
     android:paddingEnd="32dp"
     android:paddingBottom="16dp"
-    android:background="#1B1A1A"
+    android:background="@drawable/setting2"
     tools:context=".SettingActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#FFF"
-        tools:ignore="HardcodedText" />
 
-    <!-- Volume Settings -->
+
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volume"
-        android:textSize="20sp"
-        android:layout_marginTop="8dp"
-        android:layout_gravity="start"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="68dp"
+        android:text="Settings"
         android:textColor="#FFF"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
     <SeekBar
         android:id="@+id/seekbar_sound"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="277dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
         android:max="100"
+        android:thumb="@drawable/fastcar"
         android:progress="30"
         android:progressDrawable="@drawable/bg_custom_seekbar"
-        android:progressTint="#FFF"
+        android:progressTint="#FFD700 "
         android:splitTrack="false"
-        android:thumbTint="#148CCD" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="24dp"
-        android:text="Mute"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toEndOf="@+id/txt_Volume"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Switch
         android:id="@+id/switch_mute"
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
+        android:layout_width="54dp"
+        android:layout_height="48dp"
         android:layout_gravity="start"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="36dp"
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:thumbTint="#FFF"
-        android:trackTint="#52ECCD" />
+        android:trackTint="#52ECCD"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_sound" />
 
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/button_save"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="59dp"
+        android:layout_height="43dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="Mute"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Volume"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/txt_Volume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:backgroundTint="#07A6B8"
+        android:layout_gravity="start"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="208dp"
+        android:text="Volume"
         android:textColor="#FFF"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="141dp"
+        android:layout_height="76dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="180dp"
+        android:text="Logout"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="128dp"
+        android:layout_height="74dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="180dp"
+        android:backgroundTint="#FF0000"
         android:paddingStart="32dp"
         android:paddingTop="12dp"
         android:paddingEnd="32dp"
         android:paddingBottom="12dp"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center_horizontal" />
+        android:text="Save"
+        android:textColor="#FFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button_logout"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="260dp"
-        android:background="@drawable/logout"
-        android:text="@null"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
