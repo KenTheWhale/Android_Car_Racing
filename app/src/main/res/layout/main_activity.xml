@@ -133,7 +133,7 @@
             android:inputType="number"
             android:textSize="25sp"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:hint="0"
             android:layout_weight="5"/>
         <TextView
@@ -164,7 +164,7 @@
             android:inputType="number"
             android:textSize="25sp"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:hint="0"
             android:layout_weight="5"/>
         <TextView
@@ -195,7 +195,7 @@
             android:inputType="number"
             android:textSize="25sp"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:hint="0"
             android:layout_weight="5"/>
         <TextView
@@ -226,7 +226,7 @@
             android:inputType="number"
             android:textSize="25sp"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:hint="0"
             android:layout_weight="5"/>
         <TextView
