@@ -35,8 +35,8 @@ public class LoginActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        song = MediaPlayer.create(LoginActivity.this,R.raw.sword);
-        song.start();
+//        song = MediaPlayer.create(LoginActivity.this,R.raw.sword);
+//        song.start();
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
