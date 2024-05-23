@@ -88,10 +88,10 @@
 
     <Button
         android:id="@+id/button_logout"
-        android:layout_width="141dp"
-        android:layout_height="76dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="180dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="176dp"
         android:text="Logout"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,21 +100,21 @@
 
     <Button
         android:id="@+id/button_save"
-        android:layout_width="128dp"
-        android:layout_height="74dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="176dp"
         android:backgroundTint="#FF0000"
         android:paddingStart="32dp"
         android:paddingTop="12dp"
         android:paddingEnd="32dp"
         android:paddingBottom="12dp"
         android:text="Save"
-        android:textColor="#FFF"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
