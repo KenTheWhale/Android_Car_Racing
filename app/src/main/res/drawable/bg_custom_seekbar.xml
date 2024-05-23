@@ -1,13 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@android:id/secondaryProgress">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/black"/>
-            <corners android:radius="12dp"/>
-        </shape>
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="8dp" />
+            <solid android:color="#FFF" /> </shape>
     </item>
-
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="8dp" />
+                <solid android:color="#00FF00" /> </shape>
+        </clip>
+    </item>
     <item android:id="@android:id/progress">
-        <clip android:drawable="@drawable/bg_progress"/>
+        <clip>
+            <shape>
+                <corners android:radius="8dp" />
+                <solid android:color="#FF0000" /> </shape>
+        </clip>
     </item>
 </layer-list>
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item android:id="@android:id/background">-->
+<!--        <shape>-->
+<!--            <corners android:radius="8dp" />-->
+<!--            <solid android:color="#2D2D2D" />-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--    <item android:id="@android:id/secondaryProgress">-->
+<!--        <clip>-->
+<!--            <shape>-->
+<!--                <corners android:radius="8dp" />-->
+<!--                <solid android:color="#FF0000" />-->
+<!--            </shape>-->
+<!--        </clip>-->
+<!--    </item>-->
+<!--    <item android:id="@android:id/progress">-->
+<!--        <clip>-->
+<!--            <shape>-->
+<!--                <corners android:radius="8dp" />-->
+<!--                <solid android:color="#148CCD" />-->
+<!--            </shape>-->
+<!--        </clip>-->
+<!--    </item>-->
+<!--</layer-list>-->
