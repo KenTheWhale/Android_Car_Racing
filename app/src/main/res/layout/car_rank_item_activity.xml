@@ -6,51 +6,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tv_rank"
-        android:layout_width="80dp"
+        android:id="@+id/tv_bet_coin"
+        android:layout_width="101dp"
         android:layout_height="50dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
+        android:background="@color/black"
+        android:gravity="center"
+        android:text="Bet"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_car_name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_rank"
+        android:layout_width="102dp"
+        android:layout_height="50dp"
+        android:background="@color/black"
         android:gravity="center"
         android:text="Top"
         android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_coin_bonus"
+        android:layout_width="109dp"
+        android:layout_height="50dp"
         android:background="@color/black"
-        android:textSize="20sp"/>
+        android:gravity="center"
+        android:text="Bonus"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_bet_coin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tv_car_name"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@id/tv_rank"
-        tools:ignore="MissingConstraints"
+        android:background="@color/black"
         android:gravity="center"
         android:text="Name"
         android:textColor="@color/white"
-        android:background="@color/black"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/tv_bet_coin"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintStart_toEndOf="@+id/tv_car_name"
-        android:gravity="center"
-        android:text="Bet"
-        android:textColor="@color/white"
-        android:background="@color/black"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/tv_coin_bonus"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintStart_toEndOf="@+id/tv_bet_coin"
-        android:gravity="center"
-        android:text="Bonus "
-        android:textColor="@color/white"
-        android:background="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_rank"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
